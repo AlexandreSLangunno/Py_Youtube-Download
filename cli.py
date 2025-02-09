@@ -1,18 +1,17 @@
 from os import system
-from pytube import YouTube, Playlist
-
+import pytube
 
 url = str(input("Vídeo or Playlist URL: "))
 
 def video(url):
     try:
-        video = YouTube(url).streams.get_highest_resolution().download()
+        video = pytube.YouTube(url).streams.get_highest_resolution().download()
     except:
         print("Error")
 
 
 def playlist(url):
-    playlist = Playlist(url)
+    playlist = pytube.Playlist(url)
     print(f'Downloading: {playlist.title}')
     
     for video in playlist.videos:
@@ -24,6 +23,12 @@ def playlist(url):
 
 
 def thumbnail(url):
-    video = YouTube(url).thumbnail_url
+    video = pytube.YouTube(url).thumbnail_url
     print(video)
+
+def main():
+    thumbnail(url)
+    
+main()
+    
 
